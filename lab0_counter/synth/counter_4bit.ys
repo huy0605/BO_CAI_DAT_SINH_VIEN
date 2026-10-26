@@ -1,0 +1,40 @@
+# ═════════════════════════════════════════════════════════════════════════
+#  counter_4bit.ys — Kich ban tong hop bang Yosys
+#
+#  Chay:  yosys -s synth/counter_4bit.ys | tee synth/reports/counter_4bit_yosys.log
+#
+#  Tung lenh lam gi:
+# ═════════════════════════════════════════════════════════════════════════
+
+# 1. Doc ma nguon Verilog
+read_verilog rtl/counter_4bit.v
+
+# 2. Kiem cay phan cap va chi ro module dinh
+hierarchy -check -top counter_4bit
+
+# 3. Chuyen cac khoi always thanh cau truc netlist ben trong
+proc
+
+# 4. Toi uu co ban
+opt
+
+# 5. Nhan dien va toi uu may trang thai (neu co)
+fsm
+opt
+
+# 6. Xu ly bo nho (neu co)
+memory
+opt
+
+# 7. Anh xa sang cong logic doc lap cong nghe
+techmap
+opt
+
+# 8. Don day va o khong dung toi
+clean
+
+# 9. In thong ke — DAY LA PHAN CAN DOC
+stat
+
+# 10. Ghi netlist da tong hop ra file
+write_verilog synth/netlist/counter_4bit_synth.v
