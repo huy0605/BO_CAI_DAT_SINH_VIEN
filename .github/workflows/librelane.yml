@@ -29,7 +29,7 @@ jobs:
 
       - name: Run LibreLane
         run: |
-          python -m librelane --dockerized --container-no-tty \
+          python -m librelane --dockerized --docker-no-tty \
           --pdk-root "$HOME/.ciel" \
           lab0_counter/librelane/config.json
           
