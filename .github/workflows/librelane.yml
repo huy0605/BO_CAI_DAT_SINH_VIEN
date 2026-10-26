@@ -29,10 +29,10 @@ jobs:
 
       - name: Run LibreLane
         run: |
-          python -m librelane --dockerized \
-            --pdk-root "$HOME/.ciel" \
-            lab0_counter/librelane/config.json
-
+          python -m librelane --dockerized --container-no-tty \
+          --pdk-root "$HOME/.ciel" \
+          lab0_counter/librelane/config.json
+          
       - name: Upload physical design results
         if: always()
         uses: actions/upload-artifact@v4
