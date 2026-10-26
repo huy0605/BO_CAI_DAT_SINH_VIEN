@@ -23,7 +23,7 @@ jobs:
 
       - name: Run LibreLane
         run: |
-          nix run github:librelane/librelane/main -- \
+          nix run github:librelane/librelane/3.0.16 -- \
             --pdk-root "$HOME/.ciel" \
             lab0_counter/librelane/config.json
 
