@@ -1,0 +1,10 @@
+{
+  "DESIGN_NAME": "counter_4bit",
+  "VERILOG_FILES": ["dir::../rtl/counter_4bit.v"],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 10,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+  "DIE_AREA": [0, 0, 100, 100],
+  "PL_TARGET_DENSITY_PCT": 45
+}

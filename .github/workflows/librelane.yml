@@ -1,0 +1,38 @@
+name: RTL to GDSII - LibreLane
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  librelane:
+    runs-on: ubuntu-latest
+    env:
+      COLUMNS: 120
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Run LibreLane
+        run: |
+          nix run github:librelane/librelane/main -- \
+            --pdk-root "$HOME/.ciel" \
+            lab0_counter/librelane/config.json
+
+      - name: Upload physical design results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: counter-4bit-librelane-results
+          path: |
+            lab0_counter/librelane/runs/
+          if-no-files-found: warn
+          retention-days: 14
